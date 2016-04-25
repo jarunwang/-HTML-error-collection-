@@ -2,6 +2,7 @@
 
 1.window.onerror
 //捕获全局错误demo
+
 window.onerror = function(errorMessage, scriptURI, lineNumber,columnNumber,errorObj) { 
 				var data  = {
 						errorMsg : errorMessage,//出错的信息
