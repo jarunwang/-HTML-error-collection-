@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta Charset="utf-8">
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>error-collection</title>
+		
+		<script>
+			window.onerror = function(errorMessage, scriptURI, lineNumber,columnNumber,errorObj) { 
+			function needReport (sampling){//随机报错
+				 var number = Math.random().toString()
+				  return number.substr(number.length-1,1) == sampling;
+			}
+			
+			if(needReport(1)){//降低发送问题的概率，避免过多报错发送导致服务器重复日志过多。
+				var data  = {
+						errorMsg : errorMessage,//出错的信息
+						errorBrowser : navigator.userAgent,//浏览器信息
+						errorUrl : scriptURI,//出错的文件
+						errorLine : lineNumber,//出错代码的行号
+						errorCol : columnNumber,//出错代码的列号
+						errorObj : errorObj//错误的详细信息，Anything
+					}
+				    console.log(data); 
+				    //repore.send()
+			}
+		    return true;// 阻止在控制台中打印错误信息
+		  };
+  
+		</script>
+	</head>
+	<body>
+		error-collection
+	</body>
+	<script>
+		throw new Error("error");
+	</script>
+</html>
