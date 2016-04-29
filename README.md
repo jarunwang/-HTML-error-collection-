@@ -7,10 +7,10 @@ window.onerror = function(errorMessage, scriptURI, lineNumber,columnNumber,error
 				var data  = {
 						errorMsg : errorMessage,//出错的信息
 						errorBrowser : navigator.userAgent,//浏览器信息
-						errorUrl : scriptURI,//出错的文件
+						errorUrl : window.location.href,//出错的位置
+             					errorFile : scriptURI,//出错的文件
 						errorLine : lineNumber,//出错代码的行号
-						errorCol : columnNumber,//出错代码的列号
-						errorObj : errorObj//错误的详细信息，Anything
+						errorCol : columnNumber//出错代码的列号
 					}
 				  console.log(data); 
 				  //repore.send()
