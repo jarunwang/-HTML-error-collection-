@@ -1,0 +1,47 @@
+var xmlHttp;
+function createxmlHttpRequest() {
+	if (window.ActiveXObject) {
+		xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+	} else if (window.XMLHttpRequest) {
+		xmlHttp = new XMLHttpRequest();
+	}
+}
+
+function doPost(url, data) {
+	// 注意在传参数值的时候最好使用encodeURI处理一下，以防出现乱码 
+	createxmlHttpRequest();
+	xmlHttp.open("POST", url);
+	xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+	xmlHttp.send(data);
+	xmlHttp.onreadystatechange = function() {
+		if ((xmlHttp.readyState == 4) && (xmlHttp.status == 200)) {
+			alert('success');
+		} else {
+			alert('fail');
+		}
+	}
+}
+var data = {
+	name : 'hongrun1'
+}
+var toData = JSON.stringify(data)
+doPost('http://textpaybgmsystem.100bt.com:8089/userAuthorization/query.do', toData)
+
+function doGet(url) {
+	// 注意在传参数值的时候最好使用encodeURI处理一下，以防出现乱码 
+	createxmlHttpRequest();
+	xmlHttp.open("GET", url);
+	xmlHttp.send(null);
+	xmlHttp.onreadystatechange = function() {
+		if ((xmlHttp.readyState == 4) && (xmlHttp.status == 200)) {
+			alert('success');
+		} else {
+			alert('fail');
+		}
+	}
+}
+var data = {
+	name : 'hongrun1'
+}
+var toData = JSON.stringify(data)
+doGet('http://textpaybgmsystem.100bt.com:8089/userAuthorization/query.do', toData)
